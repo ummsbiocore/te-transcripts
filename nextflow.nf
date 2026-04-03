@@ -98,7 +98,7 @@ output:
  path "${newNameFasta}"  ,emit:g13_21_genome00_g13_52 
  path "${newNameGtf}"  ,emit:g13_21_gtfFile10_g13_53 
 
-container 'quay.io/viascientific/pipeline_base_image:1.0'
+container 'quay.io/ummsbiocore/pipeline_base_image:1.0'
 
 when:
 params.run_Download_Genomic_Sources == "yes"
@@ -224,7 +224,7 @@ input:
 output:
  path "${gtfName}.bed"  ,emit:g13_53_bed03_g13_54 
 
-container "${ params.IMAGE_BASE ? "${params.IMAGE_BASE}/rnaseq:4.0" : "quay.io/viascientific/rnaseq:4.0" }"
+container "${ params.IMAGE_BASE ? "${params.IMAGE_BASE}/rnaseq:4.0" : "quay.io/ummsbiocore/rnaseq:4.0" }"
 
 when:
 params.run_Download_Genomic_Sources == "yes"
@@ -269,7 +269,7 @@ output:
  path "*/${genomeSizes2}" ,optional:true  ,emit:g13_54_genomeSizes22 
  path "*/${bed2}" ,optional:true  ,emit:g13_54_bed33 
 
-container 'quay.io/viascientific/pipeline_base_image:1.0'
+container 'quay.io/ummsbiocore/pipeline_base_image:1.0'
 stageInMode 'copy'
 
 script:
@@ -345,7 +345,7 @@ input:
 output:
  path "*/${star2}" ,optional:true  ,emit:g14_26_starIndex02_g14_31 
 
-container 'quay.io/viascientific/pipeline_base_image:1.0'
+container 'quay.io/ummsbiocore/pipeline_base_image:1.0'
 stageInMode 'copy'
 
 when:
@@ -619,7 +619,7 @@ output:
  tuple val(name), file("result/*.fastq.gz")  ,emit:g17_23_reads00_g17_19 
  path "${name}.*.log"  ,emit:g17_23_log_file10_g17_24 
 
-container 'quay.io/viascientific/fastq_preprocessing:1.0'
+container 'quay.io/ummsbiocore/fastq_preprocessing:1.0'
 
 when:
 params.run_UMIextract == "yes" 
@@ -1342,7 +1342,7 @@ input:
 output:
  path "${name}_counts.tsv"  ,emit:g_25_outFileTSV00_g_23 
 
-container 'quay.io/viascientific/te-transcripts:1.0'
+container 'quay.io/ummsbiocore/te-transcripts:1.0'
 
 script:
 
@@ -1386,7 +1386,7 @@ input:
 output:
  path "counts.tsv"  ,emit:g_23_outputFileTSV00_g20_0 
 
-container 'quay.io/viascientific/te-transcripts:1.0'
+container 'quay.io/ummsbiocore/te-transcripts:1.0'
 
 script:
 """
@@ -1591,7 +1591,7 @@ input:
 output:
  path "*Rmd"  ,emit:g20_0_rMarkdown03_g20_1 
 
-container 'public.ecr.aws/t4w5x8f2/viascientific/de_module:3.0'
+container 'quay.io/ummsbiocore/de_module:3.0'
 
 when:
 run_DESeq2 == 'yes' && groups_file && !groups_file.name.startsWith('NO_FILE') && compare_file && !compare_file.name.startsWith('NO_FILE')
@@ -1710,7 +1710,7 @@ input:
 output:
  path "{*.html,*.Rmd,inputs,outputs}"  ,emit:g20_1_rMarkdown00 
 
-container 'public.ecr.aws/t4w5x8f2/viascientific/de_module:3.0'
+container 'quay.io/ummsbiocore/de_module:3.0'
 
 script:
 
